@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function MyObject() {}
+    let arr = new Array(200000).fill(null).map(e => new MyObject())
+
+    // console.log(arr); // prod 移除console.log 内部对其产生强引用
+
+    arr = null
+  </script>
+</body>
+</html>

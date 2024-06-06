@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let fns = []
+    new Array(10000).fill(null).forEach(e => {
+      function tmp(){}
+      fns.push(tmp)
+      window.addEventListener('keypress', tmp)
+    })
+    
+    // fns.forEach(tmp => {
+    //   window.removeEventListener('keypress', tmp)
+    // })
+  </script>
+</body>
+</html>

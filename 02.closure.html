@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function MyObject() {}
+
+    function closure() {
+      let arr = new Array(200000).fill(null).map(e => new MyObject())
+
+      return function inner() {
+        return arr; // 一个函数 内部访问外部变量 形成闭包
+      }
+    };
+
+    // closure() // 自动回收
+
+    // 函数由于被外部持有, 自身不会释放, 同时闭包也不会释放, 访问外部变量
+    let fn = closure()
+
+    // 使用完毕fn之后
+    // fn = null
+  </script>
+</body>
+</html>

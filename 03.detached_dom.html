@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="father">
+    父
+    <div id="child">
+      子
+    </div>
+  </div>
+
+  <script>
+    let f = document.querySelector('#father')
+    let c = document.querySelector('#child')
+
+    // 引用页面元素时,仅仅删除页面元素,不能释放js引用
+    setTimeout(() => {
+      document.body.removeChild(f)
+      f = null // 必须两个清除(存在父子关系)
+      c = null // 必须两个清除(存在父子关系)
+    }, 1000)
+
+  </script>
+</body>
+</html>

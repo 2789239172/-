@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function MyObject() {}
+
+    (function () {
+      let arr = new Array(200000).fill(null).map(e => new MyObject())
+
+      // 不小心将数据挂载到window上
+      window.arr2 = arr // 对于大数组进行了2次强引用， GC计数器发现两次强引用被赋值为null， 最终计数结果为 0 的时候， 垃圾回收时会回收
+      window.arr3 = arr // 对于大数组进行了2次强引用， GC计数器发现两次强引用被赋值为null， 最终计数结果为 0 的时候， 垃圾回收时会回收
+      window.arr4 = arr // 对于大数组进行了2次强引用， GC计数器发现两次强引用被赋值为null， 最终计数结果为 0 的时候， 垃圾回收时会回收
+      // arr = null
+    })();
+
+    // window.arr2 = null // 最常见的方式 置为null
+    window.arr2.length = 0 // 清除数据本身
+    window.arr2 = null 
+
+  </script>
+</body>
+</html>
